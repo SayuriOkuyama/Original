@@ -1,4 +1,4 @@
-# Original Product
+# VegEvery
 
 アプレンティスのオリジナルプロダクト用リポジトリです。
 
