@@ -6,6 +6,10 @@
 
 [画面遷移図(Figma)](https://www.figma.com/file/LmijGVXW3ACflPDjwuYvQ3/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=whiteboard&node-id=1%3A1857&t=lTVE9Nx0xtQ4mZaq-1)
 
+# ワイヤーフレーム
+
+[ワイヤーフレーム(Figma)](https://www.figma.com/file/Oyln7YuWtLjIql201aiDXp/%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0?type=design&node-id=0%3A1&mode=design&t=rUvqnXZwaEZtptXD-1)
+
 # ER 図
 
 ![VegEvery er](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/54180762-a073-41df-b65d-a5696148e9a5)
