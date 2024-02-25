@@ -1,0 +1,149 @@
+@startuml VegeEveryDB
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+
+entity "users" as users {
+* id
+--
+name
+password
+secret_question
+answer_to_secret_question
+}
+
+
+entity "articles_of_recipe" as articles_of_recipe {
+  *id
+  --
+title
+thumbnail
+cooking_time
+number_of_likes
+user_id (FK)
+material_id (FK)
+vege_tag_id (FK)
+}
+
+
+entity "recepies" as recepies {
+  *id
+  --
+article_of_recipe_id (FK)
+step_id (FK)
+thumbnail
+text
+}
+
+entity "materials" as materials {
+  *id
+  --
+article_of_recipe_id (FK)
+name
+quantity
+unit
+}
+
+entity "articles_of_item" as articles_of_item {
+  *id
+  --
+name
+thumbnail
+number_of_likes
+user_id (FK)
+text
+vege_tag_id (FK)
+}
+
+entity "comments_to_recepi" as comments_to_recepi {
+  *id
+  --
+articles_of_recipe (FK)
+user_id (FK)
+text
+number_of_likes
+}
+
+entity "comments_to_item" as comments_to_item {
+  *id
+  --
+articles_of_item (FK)
+user_id (FK)
+text
+number_of_likes
+}
+
+entity "tags" as tags {
+  *id
+  --
+name
+}
+
+entity "article_of_recipe_tag" as article_of_recipe_tag {
+  *iarticle_of_recipe_id (FK)
+  *tag_id (FK)
+  --
+}
+
+entity "article_of_item_tag" as article_of_item_tag {
+  *article_of_item_id (FK)
+  *tag_id (FK)
+ --
+}
+
+entity "vege_tags" as vege_tags {
+  *id
+  --
+vegan
+oriental
+ovo
+pesca
+lacto
+pollo
+fruitarian
+other
+}
+
+entity "reviews" as reviews {
+  *id
+  --
+restaurant_id (FK)
+user_id (FK)
+star
+text
+vege_tag_id (FK)
+}
+
+entity "bookshelves" as bookshelves {
+  *id
+  --
+user_id (FK)
+name
+}
+
+entity "favorites" as favorites {
+  *id
+  --
+bookshelf_id (FK)
+}
+
+users ||--o{articles_of_recipe
+articles_of_recipe ||--|{ recepies
+articles_of_recipe ||--|{ materials
+articles_of_recipe ||--o{ article_of_recipe_tag
+tags ||--o{ article_of_recipe_tag
+articles_of_recipe ||--|| vege_tags
+articles_of_recipe ||--o{ comments_to_recepi
+users ||--o{articles_of_item
+articles_of_item ||--o{ article_of_item_tag
+tags ||--o{ article_of_item_tag
+articles_of_item ||--|| vege_tags
+articles_of_item ||--o{ comments_to_item
+users ||--o{bookshelves
+bookshelves ||--o{favorites
+users ||--o{reviews
+vege_tags ||--|| reviews
+@enduml
