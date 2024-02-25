@@ -8,4 +8,4 @@
 
 # ER 図
 
-![VegEvery_er](https://github.com/SayuriOkuyama/RealWorld_client/assets/134520812/5dadd173-ce1c-47a8-bd29-d4fc38d6340e)
+![VegEvery er](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/54180762-a073-41df-b65d-a5696148e9a5)
