@@ -4,7 +4,7 @@
 
 # 画面遷移図
 
-[画面遷移図(Figma)](https://www.figma.com/file/4WOR2eq1VEiyQqKi37WFO9/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=0LTQ6DmhRcHMp7ws-1)
+[画面遷移図(Figma)](https://www.figma.com/file/LmijGVXW3ACflPDjwuYvQ3/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=whiteboard&node-id=1%3A1857&t=lTVE9Nx0xtQ4mZaq-1)
 
 # ER 図
 
