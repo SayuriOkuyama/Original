@@ -1,4 +1,4 @@
-@startuml VegeEveryDB
+@startuml VegEvery
 ' hide the spot
 hide circle
 
@@ -61,7 +61,7 @@ vege_tag_id (FK)
 entity "comments_to_recepi" as comments_to_recepi {
   *id
   --
-articles_of_recipe (FK)
+articles_of_recipe_id (FK)
 user_id (FK)
 text
 number_of_likes
@@ -70,7 +70,7 @@ number_of_likes
 entity "comments_to_item" as comments_to_item {
   *id
   --
-articles_of_item (FK)
+articles_of_item_id (FK)
 user_id (FK)
 text
 number_of_likes
@@ -125,25 +125,30 @@ name
 }
 
 entity "favorites" as favorites {
-  *id
+   *bookshelf_id (FK)
+   *article_type
+   *article_id
   --
-bookshelf_id (FK)
 }
 
 users ||--o{articles_of_recipe
 articles_of_recipe ||--|{ recepies
-articles_of_recipe ||--|{ materials
-articles_of_recipe ||--o{ article_of_recipe_tag
-tags ||--o{ article_of_recipe_tag
-articles_of_recipe ||--|| vege_tags
-articles_of_recipe ||--o{ comments_to_recepi
-users ||--o{articles_of_item
+articles_of_recipe ||-r-|{ materials
+articles_of_recipe ||-d-o{ article_of_recipe_tag
+tags ||-u-o{ article_of_recipe_tag
+articles_of_recipe ||-l-|| vege_tags
+articles_of_recipe ||-u-o{ comments_to_recepi
+users ||--o{ comments_to_recepi
+users ||-d-o{articles_of_item
 articles_of_item ||--o{ article_of_item_tag
 tags ||--o{ article_of_item_tag
 articles_of_item ||--|| vege_tags
-articles_of_item ||--o{ comments_to_item
-users ||--o{bookshelves
-bookshelves ||--o{favorites
-users ||--o{reviews
+articles_of_item ||-d-o{ comments_to_item
+users ||--o{ comments_to_item
+users ||-u-o{bookshelves
+bookshelves ||-r-o{favorites
+articles_of_recipe ||--o{favorites
+articles_of_item ||--o{favorites
+users ||-l-o{reviews
 vege_tags ||--|| reviews
 @enduml
