@@ -24,15 +24,22 @@ async function initMap() {
     mapId: "DEMO_MAP_ID",
   });
 
+  // img 要素生成
+  const beachFlagImg = document.createElement("img");
+  // 画像を指定
+  beachFlagImg.src = "./img/maker.png";
+
   // 東京駅のマーカーを生成
   const marker = new AdvancedMarkerView({
     // マーカーを立てる地図を指定
     map,
     // 東京駅の位置に
     position,
-    // title: "東京駅",
+    // マーカーを画像にする
+    content: beachFlagImg,
   });
 
+  // 情報ウィンドウに表示したい HTML
   const contentString =
     '<div id="content">' +
     '<div id="siteNotice">' +
@@ -57,6 +64,43 @@ async function initMap() {
       map,
     });
   });
+
+  // const request = {
+  //   query: "Museum of Contemporary Art Australia",
+  //   fields: ["name", "geometry"],
+  // };
+
+  // const service = new google.maps.places.PlacesService(map);
+
+  // service.findPlaceFromQuery(request, (results, status) => {
+  //   if (status === google.maps.places.PlacesServiceStatus.OK) {
+  //     for (let i = 0; i < results.length; i++) {
+  //       createMarker(results[i]);
+  //     }
+  //     map.setCenter(results[0].geometry.location);
+  //   }
+  // });
 }
 
 initMap();
+
+// Place ライブラリをインポート
+const { Place } = await google.maps.importLibrary("places");
+
+async function getPlaceDetails() {
+  // プレイス ID を使用して、新しいプレイス インスタンスを作成
+  const place = new google.maps.places.Place({
+    id: "ChIJC3Cf2PuLGGAROO00ukl8JwA",
+    requestedLanguage: "ja",
+  });
+
+  // Call fetchFields, passing the desired data fields.
+  await place.fetchFields({
+    fields: ["displayName", "formattedAddress", "servesVegetarianFood"],
+  });
+  // Show the result
+  console.log(place.displayName);
+  console.log(place.formattedAddress);
+  console.log(place);
+}
+getPlaceDetails();
