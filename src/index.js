@@ -2,8 +2,8 @@
 let map;
 
 async function initMap() {
-  // 東京駅の位置
-  const position = { lat: 35.6811673, lng: 139.7670516 };
+  // 近所のコメダ珈琲の位置
+  const position = { lat: 35.2713215, lng: 139.1797686 };
 
   /* 実行時に追加のライブラリを読み込むには、await 演算子を使用して
    async 関数内から importLibrary() を呼び出す */
@@ -18,10 +18,10 @@ async function initMap() {
   // 第二引数はオプション
   map = new Map(document.getElementById("map"), {
     // 拡大レベル
-    zoom: 18,
-    // 東京駅を中心として
+    zoom: 19,
+    // 中心にする位置（コメダ）
     center: position,
-    mapId: "DEMO_MAP_ID",
+    mapId: "DEMO_MAP_ID", // ←?
   });
 
   // img 要素生成
@@ -29,78 +29,81 @@ async function initMap() {
   // 画像を指定
   beachFlagImg.src = "./img/maker.png";
 
-  // 東京駅のマーカーを生成
+  // マーカーを生成
   const marker = new AdvancedMarkerView({
     // マーカーを立てる地図を指定
     map,
-    // 東京駅の位置に
+    // 位置を指定（コメダ）
     position,
     // マーカーを画像にする
     content: beachFlagImg,
   });
 
-  // 情報ウィンドウに表示したい HTML
-  const contentString =
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">東京駅</h1>' +
-    '<div id="bodyContent">' +
-    "<p>テキストテキストテキスト</p>" +
-    "<p>テキストテキストテキスト</p>" +
-    "</div>" +
-    "</div>";
+  // Place ライブラリをインポート
+  const { Place } = await google.maps.importLibrary("places");
 
-  // 情報ウィンドウを作成
-  const infowindow = new google.maps.InfoWindow({
-    content: contentString,
-    ariaLabel: "東京駅",
-  });
-
-  // クリック リスナーを追加し、情報ウィンドウを設定
-  marker.addListener("gmp-click", () => {
-    infowindow.open({
-      anchor: marker,
-      map,
+  async function getPlaceDetails() {
+    // プレイス ID を使用して、新しいプレイス インスタンスを作成
+    const place = new google.maps.places.Place({
+      // コメダの place ID
+      id: "ChIJc7EbuqOlGWARFlPcoQG-ItU",
+      requestedLanguage: "ja",
     });
-  });
 
-  // const request = {
-  //   query: "Museum of Contemporary Art Australia",
-  //   fields: ["name", "geometry"],
-  // };
+    // fetchFields を呼び出して、取得したいフィールド(データの種類)を指定
+    await place.fetchFields({
+      fields: [
+        "displayName", // スポット名
+        "formattedAddress", // 住所
+        "websiteURI",
+        "viewport",
+        "nationalPhoneNumber",
+        "regularOpeningHours", // 営業時間
+        "priceLevel", // 価格帯
+        "rating", // 評価
+        "reviews", // クチコミ
+        "photos",
+        "location", // 緯度・経度
+        "servesVegetarianFood", // ベジタリアン料理があるお店
+      ],
+    });
 
-  // const service = new google.maps.places.PlacesService(map);
+    console.log(place);
+    const photoUrl = place.photos[0].getURI();
+    const encodedName = encodeURI(place.displayName);
 
-  // service.findPlaceFromQuery(request, (results, status) => {
-  //   if (status === google.maps.places.PlacesServiceStatus.OK) {
-  //     for (let i = 0; i < results.length; i++) {
-  //       createMarker(results[i]);
-  //     }
-  //     map.setCenter(results[0].geometry.location);
-  //   }
-  // });
+    // 情報ウィンドウに表示したい HTML
+    const contentString =
+      '<div id="content">' +
+      '<div id="siteNotice">' +
+      "</div>" +
+      `<h1 id="firstHeading" class="firstHeading">${place.displayName}</h1>` +
+      `<img style="height: 200px; width: 200px" src=${photoUrl}>` +
+      '<div id="bodyContent">' +
+      `<p>ホームページ：${place.websiteURI}</p>` +
+      `<p>営業時間：${place.regularOpeningHours.Gg[0]}</p>` +
+      `<p>評価：${place.rating}</p>` +
+      `<p>レビュー：${place.reviews[0].Fg}</p>` +
+      `<a href="https://www.google.com/maps/search/?api=1&query=${encodedName}">Googleマップで見る</a>` +
+      "</div>" +
+      "</div>";
+
+    // 情報ウィンドウを作成
+    const infowindow = new google.maps.InfoWindow({
+      content: contentString,
+      ariaLabel: "コメダ",
+    });
+
+    // クリック リスナーを追加し、情報ウィンドウを設定
+    marker.addListener("gmp-click", () => {
+      infowindow.open({
+        anchor: marker,
+        map,
+      });
+    });
+  }
+
+  getPlaceDetails();
 }
 
 initMap();
-
-// Place ライブラリをインポート
-const { Place } = await google.maps.importLibrary("places");
-
-async function getPlaceDetails() {
-  // プレイス ID を使用して、新しいプレイス インスタンスを作成
-  const place = new google.maps.places.Place({
-    id: "ChIJC3Cf2PuLGGAROO00ukl8JwA",
-    requestedLanguage: "ja",
-  });
-
-  // Call fetchFields, passing the desired data fields.
-  await place.fetchFields({
-    fields: ["displayName", "formattedAddress", "servesVegetarianFood"],
-  });
-  // Show the result
-  console.log(place.displayName);
-  console.log(place.formattedAddress);
-  console.log(place);
-}
-getPlaceDetails();
