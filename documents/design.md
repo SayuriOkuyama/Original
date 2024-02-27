@@ -10,6 +10,11 @@
 
 [ワイヤーフレーム(Figma)](https://www.figma.com/file/Oyln7YuWtLjIql201aiDXp/%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%BC%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0?type=design&node-id=0%3A1&mode=design&t=rUvqnXZwaEZtptXD-1)
 
+# システム構成図
+
+![vegevery drawio](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/7c1b884d-18e8-452c-a1cd-55c1074a3a9b)
+
+
 # ER 図
 
 ![er](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/2ab6c563-db33-4f69-a290-296f90baf944)
@@ -173,8 +178,6 @@ FOREIGN KEY (tag_id) REFERENCES tags(id)
 | vege_tag_id   | BIGINT       |      | true     |              |                      |
 
 FOREIGN KEY (user_id) REFERENCES users(id)
-
-※restaurant_id：レストランとの紐づけ方法が未定。Google の情報と連携できるかどうか要確認。
 
 ### bookshelves テーブル
 
