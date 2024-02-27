@@ -12,7 +12,7 @@
 
 # システム構成図
 
-![vegevery drawio](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/7c1b884d-18e8-452c-a1cd-55c1074a3a9b)
+![vegevery drawio](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/96fdb749-a6d0-49ef-bd57-69e782e3b076)
 
 
 # ER 図
