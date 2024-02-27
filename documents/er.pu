@@ -7,79 +7,97 @@ skinparam linetype ortho
 
 
 entity "users" as users {
-* id
---
-name
-password
-secret_question
-answer_to_secret_question
+  *id
+  --
+  name
+  password
+  secret_question
+  answer_to_secret_question
 }
 
 
 entity "articles_of_recipe" as articles_of_recipe {
   *id
   --
-title
-thumbnail
-cooking_time
-number_of_likes
-user_id (FK)
-material_id (FK)
-vege_tag_id (FK)
+  title
+  thumbnail
+  cooking_time
+  number_of_likes
+  servings
+  user_id (FK)
+  material_id (FK)
+  vege_tag_id (FK)
 }
 
 
-entity "recepies" as recepies {
+entity "recepi_steps" as recepi_steps {
   *id
   --
-article_of_recipe_id (FK)
-step_id (FK)
-thumbnail
-text
+  article_of_recipe_id (FK)
+  step_id (FK)
+  image
+  text
 }
 
 entity "materials" as materials {
   *id
   --
-article_of_recipe_id (FK)
-name
-quantity
-unit
+  article_of_recipe_id (FK)
+  name
+  quantity
+  unit
 }
 
 entity "articles_of_item" as articles_of_item {
   *id
   --
-name
-thumbnail
-number_of_likes
-user_id (FK)
-text
-vege_tag_id (FK)
+  title
+  thumbnail
+  number_of_likes
+  user_id (FK)
+  vege_tag_id (FK)
+}
+
+entity "items" as items {
+  *id
+  --
+  articles_of_item_id (FK)
+  name
+  where_to_buy
+  price
+}
+
+entity "reports" as reports {
+  *id
+  --
+  articles_of_item_id (FK)
+  order
+  image
+  text
 }
 
 entity "comments_to_recepi" as comments_to_recepi {
   *id
   --
-articles_of_recipe_id (FK)
-user_id (FK)
-text
-number_of_likes
+  articles_of_recipe_id (FK)
+  user_id (FK)
+  text
+  number_of_likes
 }
 
 entity "comments_to_item" as comments_to_item {
   *id
   --
-articles_of_item_id (FK)
-user_id (FK)
-text
-number_of_likes
+  articles_of_item_id (FK)
+  user_id (FK)
+  text
+  number_of_likes
 }
 
 entity "tags" as tags {
   *id
   --
-name
+  name
 }
 
 entity "article_of_recipe_tag" as article_of_recipe_tag {
@@ -91,64 +109,75 @@ entity "article_of_recipe_tag" as article_of_recipe_tag {
 entity "article_of_item_tag" as article_of_item_tag {
   *article_of_item_id (FK)
   *tag_id (FK)
- --
+  --
 }
 
 entity "vege_tags" as vege_tags {
   *id
   --
-vegan
-oriental
-ovo
-pesca
-lacto
-pollo
-fruitarian
-other
+  vegan
+  oriental
+  ovo
+  pesca
+  lacto
+  pollo
+  fruitarian
+  other
 }
 
 entity "reviews" as reviews {
   *id
   --
-restaurant_id (FK)
-user_id (FK)
-star
-text
-vege_tag_id (FK)
+  display_name
+  user_id (FK)
+  star
+  text
+}
+
+entity "menus" as menus {
+  *id
+  --
+  review_id
+  name
+  price
+  vege_tag_id (FK)
 }
 
 entity "bookshelves" as bookshelves {
   *id
   --
-user_id (FK)
-name
+  user_id (FK)
+  name
 }
 
 entity "favorites" as favorites {
-   *bookshelf_id (FK)
-   *article_type
-   *article_id
+  *bookshelf_id (FK)
+  *article_type
+  *article_id
   --
 }
 
 users ||--o{articles_of_recipe
-articles_of_recipe ||--|{ recepies
+articles_of_recipe ||--|{ recepi_steps
 articles_of_recipe ||-r-|{ materials
 articles_of_recipe ||-d-o{ article_of_recipe_tag
 tags ||-u-o{ article_of_recipe_tag
 articles_of_recipe ||-l-|| vege_tags
 articles_of_recipe ||-u-o{ comments_to_recepi
-users ||--o{ comments_to_recepi
+users ||-u-o{ comments_to_recepi
 users ||-d-o{articles_of_item
 articles_of_item ||--o{ article_of_item_tag
 tags ||--o{ article_of_item_tag
 articles_of_item ||--|| vege_tags
-articles_of_item ||-d-o{ comments_to_item
-users ||--o{ comments_to_item
+articles_of_item ||--o{ comments_to_item
+articles_of_item ||-d-o{ items
+articles_of_item ||-d-o{ reports
+users ||-r-o{ comments_to_item
 users ||-u-o{bookshelves
 bookshelves ||-r-o{favorites
 articles_of_recipe ||--o{favorites
 articles_of_item ||--o{favorites
 users ||-l-o{reviews
 vege_tags ||--|| reviews
+menus }o--|| reviews
 @enduml
