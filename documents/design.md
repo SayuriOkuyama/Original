@@ -14,6 +14,8 @@
 
 [デザインカンプ(Figma)](https://www.figma.com/file/lQv4Tg7lPTZ5LyoTCeOWJO/%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3?type=design&node-id=0%3A1&mode=design&t=mzaQHBohNJZfSliW-1)
 
+[プロトタイプ(Figma)](https://www.figma.com/proto/lQv4Tg7lPTZ5LyoTCeOWJO/%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3?page-id=0%3A1&type=design&node-id=1-3&viewport=105%2C290%2C0.3&t=g9HdVMKQ0bFyt4pu-1&scaling=scale-down&starting-point-node-id=1%3A3&show-proto-sidebar=1&mode=design)
+
 # システム構成図
 
 ![vegevery drawio](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/96fdb749-a6d0-49ef-bd57-69e782e3b076)
