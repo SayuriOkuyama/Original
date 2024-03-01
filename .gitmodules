@@ -1,0 +1,6 @@
+[submodule "client"]
+  path = client
+  url = https://github.com/SayuriOkuyama/VegEvery_client
+[submodule "server"]
+  path = server
+  url = https://github.com/SayuriOkuyama/VegEvery_server
