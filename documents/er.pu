@@ -13,6 +13,8 @@ entity "users" as users {
   password
   secret_question
   answer_to_secret_question
+  vegetarian_type
+  icon
 }
 
 
