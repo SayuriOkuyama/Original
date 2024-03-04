@@ -13,19 +13,21 @@ entity "users" as users {
   password
   secret_question
   answer_to_secret_question
-  created_at
-  updated_at
-}
-
-entity "user_common_settings" as users {
-  *id
-  --
-  user_id
   vegetarian_type
   icon
   created_at
   updated_at
 }
+
+' entity "user_common_settings" as user_common_settings {
+'   *id
+'   --
+'   user_id
+'   vegetarian_type
+'   icon
+'   created_at
+'   updated_at
+' }
 
 entity "articles_of_recipe" as articles_of_recipe {
   *id
@@ -37,7 +39,13 @@ entity "articles_of_recipe" as articles_of_recipe {
   servings
   user_id (FK)
   material_id (FK)
-  vege_tag_id (FK)
+  vegan
+  oriental
+  ovo
+  pesca
+  lacto
+  pollo
+  fruitarian
   created_at
   updated_at
 }
@@ -71,7 +79,13 @@ entity "articles_of_item" as articles_of_item {
   thumbnail
   number_of_likes
   user_id (FK)
-  vege_tag_id (FK)
+  vegan
+  oriental
+  ovo
+  pesca
+  lacto
+  pollo
+  fruitarian
   created_at
   updated_at
 }
@@ -144,21 +158,6 @@ entity "article_of_item_tag" as article_of_item_tag {
   updated_at
 }
 
-entity "vege_tags" as vege_tags {
-  *id
-  --
-  vegan
-  oriental
-  ovo
-  pesca
-  lacto
-  pollo
-  fruitarian
-  other
-  created_at
-  updated_at
-}
-
 entity "reviews" as reviews {
   *id
   --
@@ -166,6 +165,13 @@ entity "reviews" as reviews {
   user_id (FK)
   star
   text
+  vegan
+  oriental
+  ovo
+  pesca
+  lacto
+  pollo
+  fruitarian
   created_at
   updated_at
 }
@@ -176,7 +182,6 @@ entity "menus" as menus {
   review_id
   name
   price
-  vege_tag_id (FK)
   created_at
   updated_at
 }
@@ -200,20 +205,17 @@ entity "favorites" as favorites {
 }
 
 users ||--o{ articles_of_recipe
-users ||--|| user_common_settings
 articles_of_recipe ||--|{ recepi_steps
-articles_of_recipe ||-r-|{ materials
+articles_of_recipe ||-l-|{ materials
 articles_of_recipe ||-d-o{ article_of_recipe_tag
 tags ||-u-o{ article_of_recipe_tag
-articles_of_recipe ||-l-|| vege_tags
-articles_of_recipe ||-u-o{ comments_to_recepi
-users ||-u-o{ comments_to_recepi
+articles_of_recipe ||-u-o{ comments_to_recipe
+users ||-u-o{ comments_to_recipe
 users ||-d-o{articles_of_item
 articles_of_item ||--o{ article_of_item_tag
 tags ||--o{ article_of_item_tag
-articles_of_item ||--|| vege_tags
 articles_of_item ||--o{ comments_to_item
-articles_of_item ||-d-o{ items
+articles_of_item ||-l-o{ items
 articles_of_item ||-d-o{ reports
 users ||-r-o{ comments_to_item
 users ||-u-o{bookshelves
@@ -221,6 +223,5 @@ bookshelves ||-r-o{favorites
 articles_of_recipe ||--o{favorites
 articles_of_item ||--o{favorites
 users ||-l-o{reviews
-vege_tags ||--|| reviews
 menus }o--|| reviews
 @enduml
