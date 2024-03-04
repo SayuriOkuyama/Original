@@ -265,7 +265,6 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 
 | カラム名     | データ型    | キー | NOT NULL | デフォルト値 | オートインクリメント |
 | ------------ | ----------- | ---- | -------- | ------------ | -------------------- |
-| id           | BIGINT      | PK   | true     |              | true                 |
 | bookshelf_id | BIGINT      | FK   | true     |              |                      |
 | article_type | VARCHAR(20) |      |          |              |                      |
 | article_id   | BIGINT      |      | true     |              |                      |
