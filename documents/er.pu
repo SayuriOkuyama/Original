@@ -75,10 +75,10 @@ entity "materials" as materials {
 entity "articles_of_item" as articles_of_item {
   *id
   --
+  user_id (FK)
   title
   thumbnail
   number_of_likes
-  user_id (FK)
   vegan
   oriental
   ovo
@@ -161,8 +161,8 @@ entity "article_of_item_tag" as article_of_item_tag {
 entity "reviews" as reviews {
   *id
   --
-  display_name
   user_id (FK)
+  display_name
   thumbnail
   star
   text
