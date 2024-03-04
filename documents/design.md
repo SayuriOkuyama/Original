@@ -51,6 +51,7 @@
 | thumbnail           | VARCHAR(255) |      | false    |              |                      |
 | cooking_time        | TIME         |      | false    |              |                      |
 | number_of_likes     | INTEGER      |      | true     | 0            |                      |
+| servings            | INTEGER      |      | true     |              |                      |
 | vegan               | BOOLEAN      |      | true     | false        |                      |
 | oriental_vegetarian | BOOLEAN      |      | true     | false        |                      |
 | ovo_vegetarian      | BOOLEAN      |      | true     | false        |                      |
@@ -64,8 +65,6 @@
 FOREIGN KEY (user_id) REFERENCES users(id)
 
 FOREIGN KEY (material_id) REFERENCES materials(id)
-
-FOREIGN KEY (vege_tag_id) REFERENCES vege_tags(id)
 
 ### recipe_steps テーブル
 
@@ -116,8 +115,6 @@ FOREIGN KEY (article_of_recipe_id) REFERENCES article_of_recipe(id)
 
 FOREIGN KEY (user_id) REFERENCES users(id)
 
-FOREIGN KEY (vege_tag_id) REFERENCES vege_tags(id)
-
 ### items テーブル
 
 | カラム名           | データ型    | キー | NOT NULL | デフォルト値 | オートインクリメント |
@@ -130,6 +127,8 @@ FOREIGN KEY (vege_tag_id) REFERENCES vege_tags(id)
 | created_at         | DATE(100)   |      | true     |              |                      |
 | updated_at         | DATE(100)   |      | true     |              |                      |
 
+FOREIGN KEY (article_of_item_id) REFERENCES articles_of_item(id)
+
 ### reports テーブル
 
 | カラム名           | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
@@ -141,6 +140,8 @@ FOREIGN KEY (vege_tag_id) REFERENCES vege_tags(id)
 | text               | VARCHAR(225) |      |          |              |                      |
 | created_at         | DATE(100)    |      | true     |              |                      |
 | updated_at         | DATE(100)    |      | true     |              |                      |
+
+FOREIGN KEY (article_of_item_id) REFERENCES articles_of_item(id)
 
 ### comments_to_recipe テーブル
 
@@ -245,6 +246,8 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 | price      | INTEGER      |      | true     |              |                      |
 | created_at | DATE(100)    |      | true     |              |                      |
 | updated_at | DATE(100)    |      | true     |              |                      |
+
+FOREIGN KEY (review_id) REFERENCES reviews(id)
 
 ### bookshelves テーブル
 
