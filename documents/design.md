@@ -35,31 +35,31 @@
 | password                  | VARCHAR(100) |      | true     |              |                      |
 | secret_question           | VARCHAR(100) |      | true     |              |                      |
 | answer_to_secret_question | VARCHAR(100) |      | true     |              |                      |
-| vegetarian_type           | string(20)   |      | true     |              |                      |
-| icon                      | string(255)  |      | false    |              |                      |
-| created_at                | date(100)    |      | true     |              |                      |
-| updated_at                | date(100)    |      | true     |              |                      |
+| vegetarian_type           | VARCHAR(20)  |      | true     |              |                      |
+| icon                      | VARCHAR(255) |      | false    |              |                      |
+| created_at                | DATE(100)    |      | true     |              |                      |
+| updated_at                | DATE(100)    |      | true     |              |                      |
 
 ### articles_of_recipe テーブル
 
-| カラム名        | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
-| --------------- | ------------ | ---- | -------- | ------------ | -------------------- |
-| id              | BIGINT       | PK   | true     |              | true                 |
-| title           | VARCHAR(50)  |      | true     |              |                      |
-| thumbnail       | VARCHAR(255) |      | false    |              |                      |
-| cooking_time    | TIME         |      | false    |              |                      |
-| number_of_likes | INTEGER      |      | true     | 0            |                      |
-| user_id         | BIGINT       | FK   | true     |              |                      |
-| material_id     | BIGINT       | FK   | true     |              |                      |
-| vegan           | BOOLEAN      |      | true     | false        | true                 |
-| oriental        | BOOLEAN      |      | true     | false        |                      |
-| ovo             | BOOLEAN      |      | true     | false        |                      |
-| pesca           | BOOLEAN      |      | true     | false        |                      |
-| lacto           | BOOLEAN      |      | true     | false        |                      |
-| pollo           | BOOLEAN      |      | true     | false        |                      |
-| fruitarian      | BOOLEAN      |      | true     | false        |                      |
-| created_at      | date(100)    |      | true     |              |                      |
-| updated_at      | date(100)    |      | true     |              |                      |
+| カラム名            | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
+| ------------------- | ------------ | ---- | -------- | ------------ | -------------------- |
+| id                  | BIGINT       | PK   | true     |              | true                 |
+| user_id             | BIGINT       | FK   | true     |              |                      |
+| material_id         | BIGINT       | FK   | true     |              |                      |
+| title               | VARCHAR(50)  |      | true     |              |                      |
+| thumbnail           | VARCHAR(255) |      | false    |              |                      |
+| cooking_time        | TIME         |      | false    |              |                      |
+| number_of_likes     | INTEGER      |      | true     | 0            |                      |
+| vegan               | BOOLEAN      |      | true     | false        |                      |
+| oriental_vegetarian | BOOLEAN      |      | true     | false        |                      |
+| ovo_vegetarian      | BOOLEAN      |      | true     | false        |                      |
+| pescatarian         | BOOLEAN      |      | true     | false        |                      |
+| lacto_vegetarian    | BOOLEAN      |      | true     | false        |                      |
+| pollo_vegetarian    | BOOLEAN      |      | true     | false        |                      |
+| fruitarian          | BOOLEAN      |      | true     | false        |                      |
+| created_at          | DATE(100)    |      | true     |              |                      |
+| updated_at          | DATE(100)    |      | true     |              |                      |
 
 FOREIGN KEY (user_id) REFERENCES users(id)
 
@@ -76,8 +76,8 @@ FOREIGN KEY (vege_tag_id) REFERENCES vege_tags(id)
 | order                | INTEGER      |      | true     |              |                      |
 | text                 | VARCHAR(255) |      | false    |              |                      |
 | image                | VARCHAR(255) |      | false    |              |                      |
-| created_at           | date(100)    |      | true     |              |                      |
-| updated_at           | date(100)    |      | true     |              |                      |
+| created_at           | DATE(100)    |      | true     |              |                      |
+| updated_at           | DATE(100)    |      | true     |              |                      |
 
 FOREIGN KEY (article_of_recipe_id) REFERENCES article_of_recipe(id)
 
@@ -90,28 +90,29 @@ FOREIGN KEY (article_of_recipe_id) REFERENCES article_of_recipe(id)
 | name                 | VARCHAR(50) |      | true     |              |                      |
 | quantity             | VARCHAR(20) |      | true     |              |                      |
 | unit                 | VARCHAR(20) |      | false    |              |                      |
-| created_at           | date(100)   |      | true     |              |                      |
-| updated_at           | date(100)   |      | true     |              |                      |
+| created_at           | DATE(100)   |      | true     |              |                      |
+| updated_at           | DATE(100)   |      | true     |              |                      |
 
 FOREIGN KEY (article_of_recipe_id) REFERENCES article_of_recipe(id)
 
 ### articles_of_item テーブル
 
-| カラム名        | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
-| --------------- | ------------ | ---- | -------- | ------------ | -------------------- |
-| id              | BIGINT       | PK   | true     |              | true                 |
-| thumbnail       | VARCHAR(255) |      | true     |              |                      |
-| number_of_likes | INTEGER      |      | true     |              |                      |
-| user_id         | BIGINT       | FK   | false    |              |                      |
-| vegan           | BOOLEAN      |      | true     | false        | true                 |
-| oriental        | BOOLEAN      |      | true     | false        |                      |
-| ovo             | BOOLEAN      |      | true     | false        |                      |
-| pesca           | BOOLEAN      |      | true     | false        |                      |
-| lacto           | BOOLEAN      |      | true     | false        |                      |
-| pollo           | BOOLEAN      |      | true     | false        |                      |
-| fruitarian      | BOOLEAN      |      | true     | false        |                      |
-| created_at      | date(100)    |      | true     |              |                      |
-| updated_at      | date(100)    |      | true     |              |                      |
+| カラム名            | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
+| ------------------- | ------------ | ---- | -------- | ------------ | -------------------- |
+| id                  | BIGINT       | PK   | true     |              | true                 |
+| user_id             | BIGINT       | FK   | false    |              |                      |
+| title               | VARCHAR(50)  |      | true     |              |                      |
+| thumbnail           | VARCHAR(255) |      | true     |              |                      |
+| number_of_likes     | INTEGER      |      | true     |              |                      |
+| vegan               | BOOLEAN      |      | true     | false        |                      |
+| oriental_vegetarian | BOOLEAN      |      | true     | false        |                      |
+| ovo_vegetarian      | BOOLEAN      |      | true     | false        |                      |
+| pescatarian         | BOOLEAN      |      | true     | false        |                      |
+| lacto_vegetarian    | BOOLEAN      |      | true     | false        |                      |
+| pollo_vegetarian    | BOOLEAN      |      | true     | false        |                      |
+| fruitarian          | BOOLEAN      |      | true     | false        |                      |
+| created_at          | DATE(100)    |      | true     |              |                      |
+| updated_at          | DATE(100)    |      | true     |              |                      |
 
 FOREIGN KEY (user_id) REFERENCES users(id)
 
@@ -119,39 +120,39 @@ FOREIGN KEY (vege_tag_id) REFERENCES vege_tags(id)
 
 ### items テーブル
 
-| カラム名            | データ型    | キー | NOT NULL | デフォルト値 | オートインクリメント |
-| ------------------- | ----------- | ---- | -------- | ------------ | -------------------- |
-| id                  | BIGINT      | PK   | true     |              | true                 |
-| articles_of_item_id | BIGINT      | FK   | true     |              |                      |
-| name                | INTEGER     |      | true     |              |                      |
-| where_to_buy        | VARCHAR(50) |      | false    |              |                      |
-| price               | INTEGER     |      |          |              |                      |
-| created_at          | date(100)   |      | true     |              |                      |
-| updated_at          | date(100)   |      | true     |              |                      |
+| カラム名           | データ型    | キー | NOT NULL | デフォルト値 | オートインクリメント |
+| ------------------ | ----------- | ---- | -------- | ------------ | -------------------- |
+| id                 | BIGINT      | PK   | true     |              | true                 |
+| article_of_item_id | BIGINT      | FK   | true     |              |                      |
+| name               | VARCHAR(50) |      | true     |              |                      |
+| where_to_buy       | VARCHAR(50) |      | false    |              |                      |
+| price              | INTEGER     |      |          |              |                      |
+| created_at         | DATE(100)   |      | true     |              |                      |
+| updated_at         | DATE(100)   |      | true     |              |                      |
 
 ### reports テーブル
 
-| カラム名            | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
-| ------------------- | ------------ | ---- | -------- | ------------ | -------------------- |
-| id                  | BIGINT       | PK   | true     |              | true                 |
-| articles_of_item_id | BIGINT       | FK   | true     |              |                      |
-| order               | INTEGER      |      | true     |              |                      |
-| image               | VARCHAR(225) |      | false    |              |                      |
-| text                | VARCHAR(225) |      |          |              |                      |
-| created_at          | date(100)    |      | true     |              |                      |
-| updated_at          | date(100)    |      | true     |              |                      |
+| カラム名           | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
+| ------------------ | ------------ | ---- | -------- | ------------ | -------------------- |
+| id                 | BIGINT       | PK   | true     |              | true                 |
+| article_of_item_id | BIGINT       | FK   | true     |              |                      |
+| order              | INTEGER      |      | true     |              |                      |
+| image              | VARCHAR(225) |      | false    |              |                      |
+| text               | VARCHAR(225) |      |          |              |                      |
+| created_at         | DATE(100)    |      | true     |              |                      |
+| updated_at         | DATE(100)    |      | true     |              |                      |
 
 ### comments_to_recipe テーブル
 
-| カラム名              | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
-| --------------------- | ------------ | ---- | -------- | ------------ | -------------------- |
-| id                    | BIGINT       | PK   | true     |              | true                 |
-| articles_of_recipe_id | BIGINT       | FK   | true     |              |                      |
-| number_of_likes       | INTEGER      |      | true     |              |                      |
-| user_id               | BIGINT       | FK   | false    |              |                      |
-| text                  | VARCHAR(255) |      |          |              |                      |
-| created_at            | date(100)    |      | true     |              |                      |
-| updated_at            | date(100)    |      | true     |              |                      |
+| カラム名             | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
+| -------------------- | ------------ | ---- | -------- | ------------ | -------------------- |
+| id                   | BIGINT       | PK   | true     |              | true                 |
+| article_of_recipe_id | BIGINT       | FK   | true     |              |                      |
+| user_id              | BIGINT       | FK   | false    |              |                      |
+| number_of_likes      | INTEGER      |      | true     |              |                      |
+| text                 | VARCHAR(255) |      |          |              |                      |
+| created_at           | DATE(100)    |      | true     |              |                      |
+| updated_at           | DATE(100)    |      | true     |              |                      |
 
 FOREIGN KEY (article_of_recipe_id) REFERENCES article_of_recipe(id)
 
@@ -159,15 +160,15 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 
 ### comments_to_item テーブル
 
-| カラム名            | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
-| ------------------- | ------------ | ---- | -------- | ------------ | -------------------- |
-| id                  | BIGINT       | PK   | true     |              | true                 |
-| articles_of_item_id | BIGINT       | FK   | true     |              |                      |
-| number_of_likes     | INTEGER      |      | true     |              |                      |
-| user_id             | BIGINT       | FK   | false    |              |                      |
-| text                | VARCHAR(255) |      | true     |              |                      |
-| created_at          | date(100)    |      | true     |              |                      |
-| updated_at          | date(100)    |      | true     |              |                      |
+| カラム名           | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
+| ------------------ | ------------ | ---- | -------- | ------------ | -------------------- |
+| id                 | BIGINT       | PK   | true     |              | true                 |
+| article_of_item_id | BIGINT       | FK   | true     |              |                      |
+| user_id            | BIGINT       | FK   | false    |              |                      |
+| number_of_likes    | INTEGER      |      | true     |              |                      |
+| text               | VARCHAR(255) |      | true     |              |                      |
+| created_at         | DATE(100)    |      | true     |              |                      |
+| updated_at         | DATE(100)    |      | true     |              |                      |
 
 FOREIGN KEY (articles_of_item_id) REFERENCES articles_of_item(id)
 
@@ -179,17 +180,17 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 | ---------- | ----------- | ---- | -------- | ------------ | -------------------- |
 | id         | BIGINT      | PK   | true     |              | true                 |
 | name       | VARCHAR(20) |      | true     |              |                      |
-| created_at | date(100)   |      | true     |              |                      |
-| updated_at | date(100)   |      | true     |              |                      |
+| created_at | DATE(100)   |      | true     |              |                      |
+| updated_at | DATE(100)   |      | true     |              |                      |
 
 ### article_of_recipe_tag テーブル
 
-| カラム名              | データ型  | キー | NOT NULL | デフォルト値 | オートインクリメント |
-| --------------------- | --------- | ---- | -------- | ------------ | -------------------- |
-| articles_of_recipe_id | BIGINT    | FK   | true     |              |                      |
-| tag_id                | BIGINT    | FK   | true     |              |                      |
-| created_at            | date(100) |      | true     |              |                      |
-| updated_at            | date(100) |      | true     |              |                      |
+| カラム名             | データ型  | キー | NOT NULL | デフォルト値 | オートインクリメント |
+| -------------------- | --------- | ---- | -------- | ------------ | -------------------- |
+| article_of_recipe_id | BIGINT    | FK   | true     |              |                      |
+| tag_id               | BIGINT    | FK   | true     |              |                      |
+| created_at           | DATE(100) |      | true     |              |                      |
+| updated_at           | DATE(100) |      | true     |              |                      |
 
 PRIMARY KEY (articles_of_recipe_id, tag_id),
 
@@ -203,8 +204,8 @@ FOREIGN KEY (tag_id) REFERENCES tags(id)
 | ------------------ | --------- | ---- | -------- | ------------ | -------------------- |
 | article_of_item_id | BIGINT    | FK   | true     |              |                      |
 | tag_id             | BIGINT    | FK   | true     |              |                      |
-| created_at         | date(100) |      | true     |              |                      |
-| updated_at         | date(100) |      | true     |              |                      |
+| created_at         | DATE(100) |      | true     |              |                      |
+| updated_at         | DATE(100) |      | true     |              |                      |
 
 PRIMARY KEY (article_of_item_id, tag_id),
 
@@ -214,22 +215,23 @@ FOREIGN KEY (tag_id) REFERENCES tags(id)
 
 ### reviews テーブル
 
-| カラム名     | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
-| ------------ | ------------ | ---- | -------- | ------------ | -------------------- |
-| id           | BIGINT       | PK   | true     |              | true                 |
-| display_name | VARCHAR(100) | FK   | true     |              |                      |
-| star         | INTEGER      |      | true     |              |                      |
-| user_id      | BIGINT       | FK   | true     |              |                      |
-| text         | VARCHAR(255) |      | true     |              |                      |
-| vegan        | BOOLEAN      |      | true     | false        | true                 |
-| oriental     | BOOLEAN      |      | true     | false        |                      |
-| ovo          | BOOLEAN      |      | true     | false        |                      |
-| pesca        | BOOLEAN      |      | true     | false        |                      |
-| lacto        | BOOLEAN      |      | true     | false        |                      |
-| pollo        | BOOLEAN      |      | true     | false        |                      |
-| fruitarian   | BOOLEAN      |      | true     | false        |                      |
-| created_at   | date(100)    |      | true     |              |                      |
-| updated_at   | date(100)    |      | true     |              |                      |
+| カラム名            | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
+| ------------------- | ------------ | ---- | -------- | ------------ | -------------------- |
+| id                  | BIGINT       | PK   | true     |              | true                 |
+| user_id             | BIGINT       | FK   | true     |              |                      |
+| display_name        | VARCHAR(100) |      | true     |              |                      |
+| thumbnail           | VARCHAR(255) |      | true     |              |                      |
+| star                | INTEGER      |      | true     |              |                      |
+| text                | VARCHAR(255) |      | true     |              |                      |
+| vegan               | BOOLEAN      |      | true     | false        |                      |
+| oriental_vegetarian | BOOLEAN      |      | true     | false        |                      |
+| ovo_vegetarian      | BOOLEAN      |      | true     | false        |                      |
+| pescatarian         | BOOLEAN      |      | true     | false        |                      |
+| lacto_vegetarian    | BOOLEAN      |      | true     | false        |                      |
+| pollo_vegetarian    | BOOLEAN      |      | true     | false        |                      |
+| fruitarian          | BOOLEAN      |      | true     | false        |                      |
+| created_at          | DATE(100)    |      | true     |              |                      |
+| updated_at          | DATE(100)    |      | true     |              |                      |
 
 FOREIGN KEY (user_id) REFERENCES users(id)
 
@@ -241,8 +243,8 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 | review_id  | BIGINT       | FK   | true     |              |                      |
 | name       | VARCHAR(100) |      | true     |              |                      |
 | price      | INTEGER      |      | true     |              |                      |
-| created_at | date(100)    |      | true     |              |                      |
-| updated_at | date(100)    |      | true     |              |                      |
+| created_at | DATE(100)    |      | true     |              |                      |
+| updated_at | DATE(100)    |      | true     |              |                      |
 
 ### bookshelves テーブル
 
@@ -251,8 +253,8 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 | id         | BIGINT      | PK   | true     |              | true                 |
 | user_id    | BIGINT      | FK   | true     |              |                      |
 | name       | VARCHAR(50) |      | true     |              |                      |
-| created_at | date(100)   |      | true     |              |                      |
-| updated_at | date(100)   |      | true     |              |                      |
+| created_at | DATE(100)   |      | true     |              |                      |
+| updated_at | DATE(100)   |      | true     |              |                      |
 
 FOREIGN KEY (user_id) REFERENCES users(id)
 
@@ -260,6 +262,7 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 
 | カラム名     | データ型    | キー | NOT NULL | デフォルト値 | オートインクリメント |
 | ------------ | ----------- | ---- | -------- | ------------ | -------------------- |
+| id           | BIGINT      | PK   | true     |              | true                 |
 | bookshelf_id | BIGINT      | FK   | true     |              |                      |
 | article_type | VARCHAR(20) |      |          |              |                      |
 | article_id   | BIGINT      |      | true     |              |                      |

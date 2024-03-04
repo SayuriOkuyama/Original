@@ -93,7 +93,7 @@ entity "articles_of_item" as articles_of_item {
 entity "items" as items {
   *id
   --
-  articles_of_item_id (FK)
+  article_of_item_id (FK)
   name
   where_to_buy
   price
@@ -104,7 +104,7 @@ entity "items" as items {
 entity "reports" as reports {
   *id
   --
-  articles_of_item_id (FK)
+  article_of_item_id (FK)
   order
   image
   text
@@ -115,7 +115,7 @@ entity "reports" as reports {
 entity "comments_to_recipe" as comments_to_recipe {
   *id
   --
-  articles_of_recipe_id (FK)
+  article_of_recipe_id (FK)
   user_id (FK)
   text
   number_of_likes
@@ -126,7 +126,7 @@ entity "comments_to_recipe" as comments_to_recipe {
 entity "comments_to_item" as comments_to_item {
   *id
   --
-  articles_of_item_id (FK)
+  article_of_item_id (FK)
   user_id (FK)
   text
   number_of_likes
@@ -163,6 +163,7 @@ entity "reviews" as reviews {
   --
   display_name
   user_id (FK)
+  thumbnail
   star
   text
   vegan
