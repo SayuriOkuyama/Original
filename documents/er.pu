@@ -32,13 +32,13 @@ entity "users" as users {
 entity "articles_of_recipe" as articles_of_recipe {
   *id
   --
+  user_id (FK)
+  material_id (FK)
   title
   thumbnail
   cooking_time
   number_of_likes
   servings
-  user_id (FK)
-  material_id (FK)
   vegan
   oriental
   ovo
