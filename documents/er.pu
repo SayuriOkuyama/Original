@@ -33,7 +33,6 @@ entity "articles_of_recipe" as articles_of_recipe {
   *id
   --
   user_id (FK)
-  material_id (FK)
   title
   thumbnail
   cooking_time
@@ -166,6 +165,7 @@ entity "reviews" as reviews {
   thumbnail
   star
   text
+  number_of_likes
   vegan
   oriental
   ovo
@@ -196,33 +196,41 @@ entity "bookshelves" as bookshelves {
   updated_at
 }
 
-entity "favorites" as favorites {
+entity "bookshelf_article_of_recipe" as bookshelf_article_of_recipe {
   *bookshelf_id (FK)
-  *article_type
-  *article_id
+  *article_of_recipe (FK)
   --
   created_at
   updated_at
 }
 
-users ||--o{ articles_of_recipe
+entity "bookshelf_article_of_item" as bookshelf_article_of_item {
+  *bookshelf_id (FK)
+  *article_of_item (FK)
+  --
+  created_at
+  updated_at
+}
+
+users ||-r-o{ articles_of_recipe
 articles_of_recipe ||--|{ recepi_steps
-articles_of_recipe ||-l-|{ materials
-articles_of_recipe ||-d-o{ article_of_recipe_tag
-tags ||-u-o{ article_of_recipe_tag
-articles_of_recipe ||-u-o{ comments_to_recipe
-users ||-u-o{ comments_to_recipe
-users ||-d-o{articles_of_item
+articles_of_recipe ||--|{ materials
+articles_of_recipe ||--o{ article_of_recipe_tag
+tags ||-r-o{ article_of_recipe_tag
+articles_of_recipe ||-l-o{ comments_to_recipe
+users ||--o{ comments_to_recipe
+users ||-l-o{articles_of_item
 articles_of_item ||--o{ article_of_item_tag
-tags ||--o{ article_of_item_tag
+tags ||-u-o{ article_of_item_tag
 articles_of_item ||--o{ comments_to_item
-articles_of_item ||-l-o{ items
-articles_of_item ||-d-o{ reports
+articles_of_item ||-u-o{ items
+articles_of_item ||-l-o{ reports
 users ||-r-o{ comments_to_item
-users ||-u-o{bookshelves
-bookshelves ||-r-o{favorites
-articles_of_recipe ||--o{favorites
-articles_of_item ||--o{favorites
-users ||-l-o{reviews
-menus }o--|| reviews
+users ||-r-o{bookshelves
+bookshelves ||--|{bookshelf_article_of_recipe
+articles_of_recipe ||--o{bookshelf_article_of_recipe
+bookshelves ||--|{bookshelf_article_of_item
+articles_of_item ||--o{bookshelf_article_of_item
+users ||-u-o{reviews
+menus }o-l-|| reviews
 @enduml
