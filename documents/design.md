@@ -46,7 +46,6 @@
 | ------------------- | ------------ | ---- | -------- | ------------ | -------------------- |
 | id                  | BIGINT       | PK   | true     |              | true                 |
 | user_id             | BIGINT       | FK   | true     |              |                      |
-| material_id         | BIGINT       | FK   | true     |              |                      |
 | title               | VARCHAR(50)  |      | true     |              |                      |
 | thumbnail           | VARCHAR(255) |      | false    |              |                      |
 | cooking_time        | TIME         |      | false    |              |                      |
@@ -224,6 +223,7 @@ FOREIGN KEY (tag_id) REFERENCES tags(id)
 | thumbnail           | VARCHAR(255) |      | true     |              |                      |
 | star                | INTEGER      |      | true     |              |                      |
 | text                | VARCHAR(255) |      | true     |              |                      |
+| number_of_likes     | INTEGER      |      | true     |              |                      |
 | vegan               | BOOLEAN      |      | true     | false        |                      |
 | oriental_vegetarian | BOOLEAN      |      | true     | false        |                      |
 | ovo_vegetarian      | BOOLEAN      |      | true     | false        |                      |
@@ -261,16 +261,26 @@ FOREIGN KEY (review_id) REFERENCES reviews(id)
 
 FOREIGN KEY (user_id) REFERENCES users(id)
 
-### favorites テーブル
+### bookshelf_article_of_recipe テーブル
 
-| カラム名     | データ型    | キー | NOT NULL | デフォルト値 | オートインクリメント |
-| ------------ | ----------- | ---- | -------- | ------------ | -------------------- |
-| bookshelf_id | BIGINT      | FK   | true     |              |                      |
-| article_type | VARCHAR(20) |      |          |              |                      |
-| article_id   | BIGINT      |      | true     |              |                      |
-| created_at   | date(100)   |      | true     |              |                      |
-| updated_at   | date(100)   |      | true     |              |                      |
+| カラム名             | データ型  | キー | NOT NULL | デフォルト値 | オートインクリメント |
+| -------------------- | --------- | ---- | -------- | ------------ | -------------------- |
+| bookshelf_id         | BIGINT    | FK   | true     |              |                      |
+| article_of_recipe_id | BIGINT    | FK   | true     |              |                      |
+| created_at           | DATE(100) |      | true     |              |                      |
+| updated_at           | DATE(100) |      | true     |              |                      |
 
-PRIMARY KEY (bookshelf_id, article_type, article_id)
+FOREIGN KEY (bookshelf_id) REFERENCES bookshelves(id)
+FOREIGN KEY (article_of_recipe_id) REFERENCES articles_of_recipe(id)
 
-※article_id は、article_type が recipe なら article_of_recipe_id、item なら article_of_item_id と連携したい。条件つきで外部キーとして設定できるか要確認。
+### bookshelf_article_of_item テーブル
+
+| カラム名           | データ型  | キー | NOT NULL | デフォルト値 | オートインクリメント |
+| ------------------ | --------- | ---- | -------- | ------------ | -------------------- |
+| bookshelf_id       | BIGINT    | FK   | true     |              |                      |
+| article_of_item_id | BIGINT    | FK   | true     |              |                      |
+| created_at         | DATE(100) |      | true     |              |                      |
+| updated_at         | DATE(100) |      | true     |              |                      |
+
+FOREIGN KEY (bookshelf_id) REFERENCES bookshelves(id)
+FOREIGN KEY (article_of_item_id) REFERENCES articles_of_item(id)
