@@ -22,7 +22,7 @@
 
 # ER 図
 
-![image](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/5e742567-5d6d-4f18-9f68-1802a3d269a9)
+![image](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/daa72294-b8c0-4f98-9ebc-1430fd6b8470)
 
 # テーブル定義書
 
