@@ -22,7 +22,7 @@
 
 # ER 図
 
-![image](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/daa72294-b8c0-4f98-9ebc-1430fd6b8470)
+![image](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/057c7c62-b134-4b71-9b1f-925bb168d60f)
 
 # テーブル定義書
 
@@ -47,10 +47,11 @@
 | id                  | BIGINT       | PK   | true     |              | true                 |
 | user_id             | BIGINT       | FK   | true     |              |                      |
 | title               | VARCHAR(50)  |      | true     |              |                      |
-| thumbnail           | VARCHAR(255) |      | false    |              |                      |
-| cooking_time        | TIME         |      | false    |              |                      |
+| thumbnail_path      | VARCHAR(50)  |      | false    |              |                      |
+| thumbnail_url       | VARCHAR(255) |      | false    |              |                      |
+| cooking_time        | VARCHAR(10)  |      | false    |              |                      |
 | number_of_likes     | INTEGER      |      | true     | 0            |                      |
-| servings            | INTEGER      |      | true     |              |                      |
+| servings            | VARCHAR(10)  |      | true     |              |                      |
 | vegan               | BOOLEAN      |      | true     | false        |                      |
 | oriental_vegetarian | BOOLEAN      |      | true     | false        |                      |
 | ovo_vegetarian      | BOOLEAN      |      | true     | false        |                      |
@@ -58,6 +59,7 @@
 | lacto_vegetarian    | BOOLEAN      |      | true     | false        |                      |
 | pollo_vegetarian    | BOOLEAN      |      | true     | false        |                      |
 | fruitarian          | BOOLEAN      |      | true     | false        |                      |
+| other_vegetarian    | BOOLEAN      |      | true     | false        |                      |
 | created_at          | DATE(100)    |      | true     |              |                      |
 | updated_at          | DATE(100)    |      | true     |              |                      |
 
@@ -73,7 +75,8 @@ FOREIGN KEY (material_id) REFERENCES materials(id)
 | article_of_recipe_id | BIGINT       | FK   | true     |              |                      |
 | order                | INTEGER      |      | true     |              |                      |
 | text                 | VARCHAR(255) |      | false    |              |                      |
-| image                | VARCHAR(255) |      | false    |              |                      |
+| image_path           | VARCHAR(255) |      | false    |              |                      |
+| image_url            | VARCHAR(255) |      | false    |              |                      |
 | created_at           | DATE(100)    |      | true     |              |                      |
 | updated_at           | DATE(100)    |      | true     |              |                      |
 
@@ -100,8 +103,9 @@ FOREIGN KEY (article_of_recipe_id) REFERENCES article_of_recipe(id)
 | id                  | BIGINT       | PK   | true     |              | true                 |
 | user_id             | BIGINT       | FK   | false    |              |                      |
 | title               | VARCHAR(50)  |      | true     |              |                      |
-| thumbnail           | VARCHAR(255) |      | true     |              |                      |
-| number_of_likes     | INTEGER      |      | true     |              |                      |
+| thumbnail_path      | VARCHAR(50)  |      | false    |              |                      |
+| thumbnail_url       | VARCHAR(255) |      | false    |              |                      |
+| number_of_likes     | INTEGER      |      | true     | 0            |                      |
 | vegan               | BOOLEAN      |      | true     | false        |                      |
 | oriental_vegetarian | BOOLEAN      |      | true     | false        |                      |
 | ovo_vegetarian      | BOOLEAN      |      | true     | false        |                      |
@@ -109,6 +113,7 @@ FOREIGN KEY (article_of_recipe_id) REFERENCES article_of_recipe(id)
 | lacto_vegetarian    | BOOLEAN      |      | true     | false        |                      |
 | pollo_vegetarian    | BOOLEAN      |      | true     | false        |                      |
 | fruitarian          | BOOLEAN      |      | true     | false        |                      |
+| other_vegetarian    | BOOLEAN      |      | true     | false        |                      |
 | created_at          | DATE(100)    |      | true     |              |                      |
 | updated_at          | DATE(100)    |      | true     |              |                      |
 
@@ -135,7 +140,8 @@ FOREIGN KEY (article_of_item_id) REFERENCES articles_of_item(id)
 | id                 | BIGINT       | PK   | true     |              | true                 |
 | article_of_item_id | BIGINT       | FK   | true     |              |                      |
 | order              | INTEGER      |      | true     |              |                      |
-| image              | VARCHAR(225) |      | false    |              |                      |
+| image_path           | VARCHAR(255) |      | false    |              |                      |
+| image_url            | VARCHAR(255) |      | false    |              |                      |
 | text               | VARCHAR(225) |      |          |              |                      |
 | created_at         | DATE(100)    |      | true     |              |                      |
 | updated_at         | DATE(100)    |      | true     |              |                      |
@@ -187,6 +193,7 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 
 | カラム名             | データ型  | キー | NOT NULL | デフォルト値 | オートインクリメント |
 | -------------------- | --------- | ---- | -------- | ------------ | -------------------- |
+| id                   | BIGINT    | PK   | true     |              | true                 |
 | article_of_recipe_id | BIGINT    | FK   | true     |              |                      |
 | tag_id               | BIGINT    | FK   | true     |              |                      |
 | created_at           | DATE(100) |      | true     |              |                      |
@@ -202,6 +209,7 @@ FOREIGN KEY (tag_id) REFERENCES tags(id)
 
 | カラム名           | データ型  | キー | NOT NULL | デフォルト値 | オートインクリメント |
 | ------------------ | --------- | ---- | -------- | ------------ | -------------------- |
+| id                 | BIGINT    | PK   | true     |              | true                 |
 | article_of_item_id | BIGINT    | FK   | true     |              |                      |
 | tag_id             | BIGINT    | FK   | true     |              |                      |
 | created_at         | DATE(100) |      | true     |              |                      |
@@ -220,10 +228,11 @@ FOREIGN KEY (tag_id) REFERENCES tags(id)
 | id                  | BIGINT       | PK   | true     |              | true                 |
 | user_id             | BIGINT       | FK   | true     |              |                      |
 | display_name        | VARCHAR(100) |      | true     |              |                      |
-| thumbnail           | VARCHAR(255) |      | true     |              |                      |
+| thumbnail_path      | VARCHAR(50)  |      | false    |              |                      |
+| thumbnail_url       | VARCHAR(255) |      | false    |              |                      |
 | star                | INTEGER      |      | true     |              |                      |
 | text                | VARCHAR(255) |      | true     |              |                      |
-| number_of_likes     | INTEGER      |      | true     |              |                      |
+| number_of_likes     | INTEGER      |      | true     | 0            |                      |
 | vegan               | BOOLEAN      |      | true     | false        |                      |
 | oriental_vegetarian | BOOLEAN      |      | true     | false        |                      |
 | ovo_vegetarian      | BOOLEAN      |      | true     | false        |                      |
@@ -231,6 +240,7 @@ FOREIGN KEY (tag_id) REFERENCES tags(id)
 | lacto_vegetarian    | BOOLEAN      |      | true     | false        |                      |
 | pollo_vegetarian    | BOOLEAN      |      | true     | false        |                      |
 | fruitarian          | BOOLEAN      |      | true     | false        |                      |
+| other_vegetarian    | BOOLEAN      |      | true     | false        |                      |
 | created_at          | DATE(100)    |      | true     |              |                      |
 | updated_at          | DATE(100)    |      | true     |              |                      |
 
