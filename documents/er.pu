@@ -34,17 +34,19 @@ entity "articles_of_recipe" as articles_of_recipe {
   --
   user_id (FK)
   title
-  thumbnail
+  thumbnail_path
+  thumbnail_url
   cooking_time
   number_of_likes
   servings
   vegan
-  oriental
-  ovo
-  pesca
-  lacto
-  pollo
+  oriental_vegetarian
+  ovo_vegetarian
+  pescatarian
+  lacto_vegetarian
+  pollo_vegetarian
   fruitarian
+  other_vegetarian
   created_at
   updated_at
 }
@@ -54,7 +56,8 @@ entity "recepi_steps" as recepi_steps {
   --
   article_of_recipe_id (FK)
   order
-  image
+  image_path
+  image_url
   text
   created_at
   updated_at
@@ -76,15 +79,17 @@ entity "articles_of_item" as articles_of_item {
   --
   user_id (FK)
   title
-  thumbnail
+  thumbnail_path
+  thumbnail_url
   number_of_likes
   vegan
-  oriental
-  ovo
-  pesca
-  lacto
-  pollo
+  oriental_vegetarian
+  ovo_vegetarian
+  pescatarian
+  lacto_vegetarian
+  pollo_vegetarian
   fruitarian
+  other_vegetarian
   created_at
   updated_at
 }
@@ -105,7 +110,8 @@ entity "reports" as reports {
   --
   article_of_item_id (FK)
   order
-  image
+  image_path
+  image_url
   text
   created_at
   updated_at
@@ -142,6 +148,7 @@ entity "tags" as tags {
 }
 
 entity "article_of_recipe_tag" as article_of_recipe_tag {
+  *id
   *article_of_recipe_id (FK)
   *tag_id (FK)
   --
@@ -150,6 +157,7 @@ entity "article_of_recipe_tag" as article_of_recipe_tag {
 }
 
 entity "article_of_item_tag" as article_of_item_tag {
+  *id
   *article_of_item_id (FK)
   *tag_id (FK)
   --
@@ -162,17 +170,19 @@ entity "reviews" as reviews {
   --
   user_id (FK)
   display_name
-  thumbnail
+  thumbnail_path
+  thumbnail_url
   star
   text
   number_of_likes
   vegan
-  oriental
-  ovo
-  pesca
-  lacto
-  pollo
+  oriental_vegetarian
+  ovo_vegetarian
+  pescatarian
+  lacto_vegetarian
+  pollo_vegetarian
   fruitarian
+  other_vegetarian
   created_at
   updated_at
 }
@@ -212,13 +222,23 @@ entity "bookshelf_article_of_item" as bookshelf_article_of_item {
   updated_at
 }
 
+entity "images_in_storage" as images_in_storage {
+  *id
+  --
+  path
+  fullpath
+  url
+  created_at
+  updated_at
+}
+
 users ||-r-o{ articles_of_recipe
-articles_of_recipe ||--|{ recepi_steps
+articles_of_recipe ||-r-|{ recepi_steps
 articles_of_recipe ||--|{ materials
 articles_of_recipe ||--o{ article_of_recipe_tag
 tags ||-r-o{ article_of_recipe_tag
 articles_of_recipe ||-l-o{ comments_to_recipe
-users ||--o{ comments_to_recipe
+users ||-r-o{ comments_to_recipe
 users ||-l-o{articles_of_item
 articles_of_item ||--o{ article_of_item_tag
 tags ||-u-o{ article_of_item_tag
@@ -226,11 +246,16 @@ articles_of_item ||--o{ comments_to_item
 articles_of_item ||-u-o{ items
 articles_of_item ||-l-o{ reports
 users ||-r-o{ comments_to_item
-users ||-r-o{bookshelves
+users ||-d-o{bookshelves
 bookshelves ||--|{bookshelf_article_of_recipe
 articles_of_recipe ||--o{bookshelf_article_of_recipe
 bookshelves ||--|{bookshelf_article_of_item
 articles_of_item ||--o{bookshelf_article_of_item
 users ||-u-o{reviews
 menus }o-l-|| reviews
+images_in_storage ||--|| articles_of_recipe
+images_in_storage||--|| articles_of_item
+images_in_storage |o-r-|| recepi_steps
+images_in_storage|o--|| reports
+
 @enduml
