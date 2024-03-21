@@ -207,6 +207,7 @@ entity "bookshelves" as bookshelves {
 }
 
 entity "bookshelf_article_of_recipe" as bookshelf_article_of_recipe {
+  *id
   *bookshelf_id (FK)
   *article_of_recipe (FK)
   --
@@ -215,8 +216,19 @@ entity "bookshelf_article_of_recipe" as bookshelf_article_of_recipe {
 }
 
 entity "bookshelf_article_of_item" as bookshelf_article_of_item {
+  *id
   *bookshelf_id (FK)
   *article_of_item (FK)
+  --
+  created_at
+  updated_at
+}
+
+entity "likes" as likes {
+  *id
+  user_id (FK)
+  likeable_id
+  likeable_type
   --
   created_at
   updated_at
@@ -245,14 +257,20 @@ tags ||-u-o{ article_of_item_tag
 articles_of_item ||--o{ comments_to_item
 articles_of_item ||-u-o{ items
 articles_of_item ||-l-o{ reports
-users ||-r-o{ comments_to_item
+users ||--o{ comments_to_item
 users ||-d-o{bookshelves
-bookshelves ||--|{bookshelf_article_of_recipe
+bookshelves ||-r-|{bookshelf_article_of_recipe
 articles_of_recipe ||--o{bookshelf_article_of_recipe
 bookshelves ||--|{bookshelf_article_of_item
 articles_of_item ||--o{bookshelf_article_of_item
 users ||-u-o{reviews
 menus }o-l-|| reviews
+users |o-l-|{ likes
+likes |o-r-|{ articles_of_recipe
+likes |o-r-|{ articles_of_item
+likes |o-r-|{ comments_to_recipe
+likes |o-r-|{ comments_to_item
+likes |o-r-|{ reviews
 images_in_storage ||--|| articles_of_recipe
 images_in_storage||--|| articles_of_item
 images_in_storage |o-r-|| recepi_steps
