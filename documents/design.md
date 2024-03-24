@@ -22,7 +22,8 @@
 
 # ER 図
 
-![image](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/7827f319-39f1-406f-8ead-ec7ce622701c)
+![image](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/55cc2b77-89cb-4939-8f2b-4e0f8dd0db71)
+
 
 # テーブル定義書
 
@@ -241,7 +242,6 @@ FOREIGN KEY (tag_id) REFERENCES tags(id)
 | created_at          | DATE(100)    |      | true     |              |                      |
 | updated_at          | DATE(100)    |      | true     |              |                      |
 
-FOREIGN KEY (review_id) REFERENCES reviews(id)
 
 ### reviews テーブル
 
@@ -267,6 +267,7 @@ FOREIGN KEY (review_id) REFERENCES reviews(id)
 | updated_at          | DATE(100)    |      | true     |              |                      |
 
 FOREIGN KEY (user_id) REFERENCES users(id)
+FOREIGN KEY (restaurant_id) REFERENCES restaurants(id)
 
 ### menus テーブル
 
