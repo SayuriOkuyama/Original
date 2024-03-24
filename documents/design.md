@@ -24,7 +24,6 @@
 
 ![image](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/7827f319-39f1-406f-8ead-ec7ce622701c)
 
-
 # テーブル定義書
 
 ### users テーブル
@@ -141,8 +140,8 @@ FOREIGN KEY (article_of_item_id) REFERENCES articles_of_item(id)
 | id                 | BIGINT       | PK   | true     |              | true                 |
 | article_of_item_id | BIGINT       | FK   | true     |              |                      |
 | order              | INTEGER      |      | true     |              |                      |
-| image_path           | VARCHAR(255) |      | false    |              |                      |
-| image_url            | VARCHAR(255) |      | false    |              |                      |
+| image_path         | VARCHAR(255) |      | false    |              |                      |
+| image_url          | VARCHAR(255) |      | false    |              |                      |
 | text               | VARCHAR(225) |      |          |              |                      |
 | created_at         | DATE(100)    |      | true     |              |                      |
 | updated_at         | DATE(100)    |      | true     |              |                      |
@@ -222,13 +221,35 @@ FOREIGN KEY (articles_of_item_id) REFERENCES article_of_item(id),
 
 FOREIGN KEY (tag_id) REFERENCES tags(id)
 
+### restaurants テーブル
+
+| カラム名            | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
+| ------------------- | ------------ | ---- | -------- | ------------ | -------------------- |
+| id                  | BIGINT       | PK   | true     |              | true                 |
+| name                | VARCHAR(100) |      | true     |              |                      |
+| place_id            | INTEGER      |      | true     |              |                      |
+| longitude           | INTEGER      |      | true     |              |                      |
+| star                | INTEGER      |      | true     |              |                      |
+| vegan               | BOOLEAN      |      | true     | false        |                      |
+| oriental_vegetarian | BOOLEAN      |      | true     | false        |                      |
+| ovo_vegetarian      | BOOLEAN      |      | true     | false        |                      |
+| pescatarian         | BOOLEAN      |      | true     | false        |                      |
+| lacto_vegetarian    | BOOLEAN      |      | true     | false        |                      |
+| pollo_vegetarian    | BOOLEAN      |      | true     | false        |                      |
+| fruitarian          | BOOLEAN      |      | true     | false        |                      |
+| other_vegetarian    | BOOLEAN      |      | true     | false        |                      |
+| created_at          | DATE(100)    |      | true     |              |                      |
+| updated_at          | DATE(100)    |      | true     |              |                      |
+
+FOREIGN KEY (review_id) REFERENCES reviews(id)
+
 ### reviews テーブル
 
 | カラム名            | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
 | ------------------- | ------------ | ---- | -------- | ------------ | -------------------- |
 | id                  | BIGINT       | PK   | true     |              | true                 |
 | user_id             | BIGINT       | FK   | true     |              |                      |
-| display_name        | VARCHAR(100) |      | true     |              |                      |
+| restaurant_id       | VARCHAR(100) | FK   | true     |              |                      |
 | thumbnail_path      | VARCHAR(50)  |      | false    |              |                      |
 | thumbnail_url       | VARCHAR(255) |      | false    |              |                      |
 | star                | INTEGER      |      | true     |              |                      |
