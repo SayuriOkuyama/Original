@@ -165,11 +165,31 @@ entity "article_of_item_tag" as article_of_item_tag {
   updated_at
 }
 
+entity "restaurants" as restaurants {
+  *id
+  --
+  name
+  place_id
+  latitude
+  longitude
+  star
+  vegan
+  oriental_vegetarian
+  ovo_vegetarian
+  pescatarian
+  lacto_vegetarian
+  pollo_vegetarian
+  fruitarian
+  other_vegetarian
+  created_at
+  updated_at
+}
+
 entity "reviews" as reviews {
   *id
   --
   user_id (FK)
-  display_name
+  restaurant_id (FK)
   thumbnail_path
   thumbnail_url
   star
@@ -254,17 +274,18 @@ users ||-r-o{ comments_to_recipe
 users ||-l-o{articles_of_item
 articles_of_item ||--o{ article_of_item_tag
 tags ||-u-o{ article_of_item_tag
-articles_of_item ||--o{ comments_to_item
+articles_of_item ||-u-o{ comments_to_item
 articles_of_item ||-u-o{ items
 articles_of_item ||-l-o{ reports
-users ||--o{ comments_to_item
+users ||-l-o{ comments_to_item
 users ||-d-o{bookshelves
 bookshelves ||-r-|{bookshelf_article_of_recipe
 articles_of_recipe ||--o{bookshelf_article_of_recipe
 bookshelves ||--|{bookshelf_article_of_item
 articles_of_item ||--o{bookshelf_article_of_item
 users ||-u-o{reviews
-menus }o-l-|| reviews
+menus }o--|| reviews
+restaurants ||-l-|{ reviews
 users |o-l-|{ likes
 likes |o-r-|{ articles_of_recipe
 likes |o-r-|{ articles_of_item
