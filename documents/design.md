@@ -24,7 +24,6 @@
 
 ![image](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/55cc2b77-89cb-4939-8f2b-4e0f8dd0db71)
 
-
 # テーブル定義書
 
 ### users テーブル
@@ -228,8 +227,9 @@ FOREIGN KEY (tag_id) REFERENCES tags(id)
 | ------------------- | ------------ | ---- | -------- | ------------ | -------------------- |
 | id                  | BIGINT       | PK   | true     |              | true                 |
 | name                | VARCHAR(100) |      | true     |              |                      |
-| place_id            | INTEGER      |      | true     |              |                      |
-| longitude           | INTEGER      |      | true     |              |                      |
+| place_id            | VARCHAR(100) |      | true     |              |                      |
+| latitude            | DOUBLE       |      | true     |              |                      |
+| longitude           | DOUBLE       |      | true     |              |                      |
 | star                | INTEGER      |      | true     |              |                      |
 | vegan               | BOOLEAN      |      | true     | false        |                      |
 | oriental_vegetarian | BOOLEAN      |      | true     | false        |                      |
@@ -241,30 +241,29 @@ FOREIGN KEY (tag_id) REFERENCES tags(id)
 | other_vegetarian    | BOOLEAN      |      | true     | false        |                      |
 | created_at          | DATE(100)    |      | true     |              |                      |
 | updated_at          | DATE(100)    |      | true     |              |                      |
-
 
 ### reviews テーブル
 
-| カラム名            | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
-| ------------------- | ------------ | ---- | -------- | ------------ | -------------------- |
-| id                  | BIGINT       | PK   | true     |              | true                 |
-| user_id             | BIGINT       | FK   | true     |              |                      |
-| restaurant_id       | VARCHAR(100) | FK   | true     |              |                      |
-| thumbnail_path      | VARCHAR(50)  |      | false    |              |                      |
-| thumbnail_url       | VARCHAR(255) |      | false    |              |                      |
-| star                | INTEGER      |      | true     |              |                      |
-| text                | VARCHAR(255) |      | true     |              |                      |
-| number_of_likes     | INTEGER      |      | true     | 0            |                      |
-| vegan               | BOOLEAN      |      | true     | false        |                      |
-| oriental_vegetarian | BOOLEAN      |      | true     | false        |                      |
-| ovo_vegetarian      | BOOLEAN      |      | true     | false        |                      |
-| pescatarian         | BOOLEAN      |      | true     | false        |                      |
-| lacto_vegetarian    | BOOLEAN      |      | true     | false        |                      |
-| pollo_vegetarian    | BOOLEAN      |      | true     | false        |                      |
-| fruitarian          | BOOLEAN      |      | true     | false        |                      |
-| other_vegetarian    | BOOLEAN      |      | true     | false        |                      |
-| created_at          | DATE(100)    |      | true     |              |                      |
-| updated_at          | DATE(100)    |      | true     |              |                      |
+| カラム名            | データ型        | キー | NOT NULL | デフォルト値 | オートインクリメント |
+| ------------------- | --------------- | ---- | -------- | ------------ | -------------------- |
+| id                  | BIGINT          | PK   | true     |              | true                 |
+| user_id             | BIGINT          | FK   | true     |              |                      |
+| restaurant_id       | BIGINT 　　　　 | FK   | true     |              |                      |
+| thumbnail_path      | VARCHAR(50)     |      | false    |              |                      |
+| thumbnail_url       | VARCHAR(255)    |      | false    |              |                      |
+| star                | INTEGER         |      | true     |              |                      |
+| text                | VARCHAR(255)    |      | true     |              |                      |
+| number_of_likes     | INTEGER         |      | true     | 0            |                      |
+| vegan               | BOOLEAN         |      | true     | false        |                      |
+| oriental_vegetarian | BOOLEAN         |      | true     | false        |                      |
+| ovo_vegetarian      | BOOLEAN         |      | true     | false        |                      |
+| pescatarian         | BOOLEAN         |      | true     | false        |                      |
+| lacto_vegetarian    | BOOLEAN         |      | true     | false        |                      |
+| pollo_vegetarian    | BOOLEAN         |      | true     | false        |                      |
+| fruitarian          | BOOLEAN         |      | true     | false        |                      |
+| other_vegetarian    | BOOLEAN         |      | true     | false        |                      |
+| created_at          | DATE(100)       |      | true     |              |                      |
+| updated_at          | DATE(100)       |      | true     |              |                      |
 
 FOREIGN KEY (user_id) REFERENCES users(id)
 FOREIGN KEY (restaurant_id) REFERENCES restaurants(id)
