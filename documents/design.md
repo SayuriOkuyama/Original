@@ -20,7 +20,6 @@
 
 ![vegevery drawio](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/71a1a212-c401-42f6-bc7a-975904733ca5)
 
-
 # ER 図
 
 ![image](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/12ea8719-22f2-4915-94f6-119892a8760d)
@@ -41,6 +40,19 @@
 | icon                      | VARCHAR(255) |      | false    |              |                      |
 | created_at                | DATE(100)    |      | true     |              |                      |
 | updated_at                | DATE(100)    |      | true     |              |                      |
+
+### social_accounts テーブル
+
+| カラム名    | データ型    | キー | NOT NULL | デフォルト値 | オートインクリメント |
+| ----------- | ----------- | ---- | -------- | ------------ | -------------------- |
+| id          | BIGINT      | PK   | true     |              | true                 |
+| user_id     | BIGINT      | FK   | true     |              |                      |
+| provider_id | BIGINT      |      | true     |              |                      |
+| provider    | VARCHAR(20) |      | true     |              |                      |
+| created_at  | DATE(100)   |      | true     |              |                      |
+| updated_at  | DATE(100)   |      | true     |              |                      |
+
+FOREIGN KEY (user_id) REFERENCES users(id)
 
 ### articles_of_recipe テーブル
 

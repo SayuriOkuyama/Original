@@ -19,15 +19,15 @@ entity "users" as users {
   updated_at
 }
 
-' entity "user_common_settings" as user_common_settings {
-'   *id
-'   --
-'   user_id
-'   vegetarian_type
-'   icon
-'   created_at
-'   updated_at
-' }
+entity "social_accounts" as social_accounts {
+  *id
+  --
+  user_id (FK)
+  provider_id
+  provider
+  created_at
+  updated_at
+}
 
 entity "articles_of_recipe" as articles_of_recipe {
   *id
@@ -264,6 +264,7 @@ entity "images_in_storage" as images_in_storage {
   updated_at
 }
 
+users ||--o{ social_accounts
 users ||-r-o{ articles_of_recipe
 articles_of_recipe ||-r-|{ recepi_steps
 articles_of_recipe ||--|{ materials
