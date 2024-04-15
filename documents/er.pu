@@ -195,6 +195,14 @@ entity "reviews" as reviews {
   star
   text
   number_of_likes
+}
+
+entity "menus" as menus {
+  *id
+  --
+  review_id
+  name
+  price
   vegan
   oriental_vegetarian
   ovo_vegetarian
@@ -205,14 +213,6 @@ entity "reviews" as reviews {
   other_vegetarian
   created_at
   updated_at
-}
-
-entity "menus" as menus {
-  *id
-  --
-  review_id
-  name
-  price
   created_at
   updated_at
 }
