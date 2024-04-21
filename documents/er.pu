@@ -20,6 +20,19 @@ entity "users" as users {
   updated_at
 }
 
+entity "personal_access_tokens" as personal_access_tokens {
+  *id
+  --
+  tokenable
+  name
+  token
+  abilities
+  last_used_at
+  expires_at
+  created_at
+  updated_at
+}
+
 entity "social_accounts" as social_accounts {
   *id
   --

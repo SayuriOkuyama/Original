@@ -37,8 +37,24 @@
 | answer_to_secret_question | VARCHAR(100) |      | true     |              |                      |
 | vegetarian_type           | VARCHAR(20)  |      | true     |              |                      |
 | icon                      | VARCHAR(255) |      | false    |              |                      |
-| created_at                | DATE(100)    |      | true     |              |                      |
-| updated_at                | DATE(100)    |      | true     |              |                      |
+| created_at                | TIMESTAMP    |      | true     |              |                      |
+| updated_at                | TIMESTAMP    |      | true     |              |                      |
+
+### personal_access_tokens テーブル
+
+| カラム名     | データ型     | キー | NOT NULL | デフォルト値 | オートインクリメント |
+| ------------ | ------------ | ---- | -------- | ------------ | -------------------- |
+| id           | BIGINT       | PK   | true     |              | true                 |
+| tokenable    | VARCHAR(225) |      | true     |              |                      |
+| name         | VARCHAR(225) |      | true     |              |                      |
+| token        | VARCHAR(225) |      | true     |              |                      |
+| abilities    | TEXT         |      | true     |              |                      |
+| last_used_at | TIMESTAMP    |      | true     |              |                      |
+| expires_at   | TIMESTAMP    |      | true     |              |                      |
+| created_at   | TIMESTAMP    |      | true     |              |                      |
+| updated_at   | TIMESTAMP    |      | true     |              |                      |
+
+FOREIGN KEY (tokenable_id, tokenable_type) REFERENCES {任意のテーブル}(id)
 
 ### social_accounts テーブル
 
@@ -48,8 +64,8 @@
 | user_id     | BIGINT      | FK   | true     |              |                      |
 | provider_id | BIGINT      |      | true     |              |                      |
 | provider    | VARCHAR(20) |      | true     |              |                      |
-| created_at  | DATE(100)   |      | true     |              |                      |
-| updated_at  | DATE(100)   |      | true     |              |                      |
+| created_at  | TIMESTAMP   |      | true     |              |                      |
+| updated_at  | TIMESTAMP   |      | true     |              |                      |
 
 FOREIGN KEY (user_id) REFERENCES users(id)
 
@@ -73,8 +89,8 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 | pollo_vegetarian    | BOOLEAN      |      | true     | false        |                      |
 | fruitarian          | BOOLEAN      |      | true     | false        |                      |
 | other_vegetarian    | BOOLEAN      |      | true     | false        |                      |
-| created_at          | DATE(100)    |      | true     |              |                      |
-| updated_at          | DATE(100)    |      | true     |              |                      |
+| created_at          | TIMESTAMP    |      | true     |              |                      |
+| updated_at          | TIMESTAMP    |      | true     |              |                      |
 
 FOREIGN KEY (user_id) REFERENCES users(id)
 
@@ -90,8 +106,8 @@ FOREIGN KEY (material_id) REFERENCES materials(id)
 | text                 | VARCHAR(255) |      | false    |              |                      |
 | image_path           | VARCHAR(255) |      | false    |              |                      |
 | image_url            | VARCHAR(255) |      | false    |              |                      |
-| created_at           | DATE(100)    |      | true     |              |                      |
-| updated_at           | DATE(100)    |      | true     |              |                      |
+| created_at           | TIMESTAMP    |      | true     |              |                      |
+| updated_at           | TIMESTAMP    |      | true     |              |                      |
 
 FOREIGN KEY (article_of_recipe_id) REFERENCES article_of_recipe(id)
 
@@ -104,8 +120,8 @@ FOREIGN KEY (article_of_recipe_id) REFERENCES article_of_recipe(id)
 | name                 | VARCHAR(50) |      | true     |              |                      |
 | quantity             | VARCHAR(20) |      | true     |              |                      |
 | unit                 | VARCHAR(20) |      | false    |              |                      |
-| created_at           | DATE(100)   |      | true     |              |                      |
-| updated_at           | DATE(100)   |      | true     |              |                      |
+| created_at           | TIMESTAMP   |      | true     |              |                      |
+| updated_at           | TIMESTAMP   |      | true     |              |                      |
 
 FOREIGN KEY (article_of_recipe_id) REFERENCES article_of_recipe(id)
 
@@ -127,8 +143,8 @@ FOREIGN KEY (article_of_recipe_id) REFERENCES article_of_recipe(id)
 | pollo_vegetarian    | BOOLEAN      |      | true     | false        |                      |
 | fruitarian          | BOOLEAN      |      | true     | false        |                      |
 | other_vegetarian    | BOOLEAN      |      | true     | false        |                      |
-| created_at          | DATE(100)    |      | true     |              |                      |
-| updated_at          | DATE(100)    |      | true     |              |                      |
+| created_at          | TIMESTAMP    |      | true     |              |                      |
+| updated_at          | TIMESTAMP    |      | true     |              |                      |
 
 FOREIGN KEY (user_id) REFERENCES users(id)
 
@@ -141,8 +157,8 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 | name               | VARCHAR(50) |      | true     |              |                      |
 | where_to_buy       | VARCHAR(50) |      | false    |              |                      |
 | price              | INTEGER     |      |          |              |                      |
-| created_at         | DATE(100)   |      | true     |              |                      |
-| updated_at         | DATE(100)   |      | true     |              |                      |
+| created_at         | TIMESTAMP   |      | true     |              |                      |
+| updated_at         | TIMESTAMP   |      | true     |              |                      |
 
 FOREIGN KEY (article_of_item_id) REFERENCES articles_of_item(id)
 
@@ -156,8 +172,8 @@ FOREIGN KEY (article_of_item_id) REFERENCES articles_of_item(id)
 | image_path         | VARCHAR(255) |      | false    |              |                      |
 | image_url          | VARCHAR(255) |      | false    |              |                      |
 | text               | VARCHAR(225) |      |          |              |                      |
-| created_at         | DATE(100)    |      | true     |              |                      |
-| updated_at         | DATE(100)    |      | true     |              |                      |
+| created_at         | TIMESTAMP    |      | true     |              |                      |
+| updated_at         | TIMESTAMP    |      | true     |              |                      |
 
 FOREIGN KEY (article_of_item_id) REFERENCES articles_of_item(id)
 
@@ -170,8 +186,8 @@ FOREIGN KEY (article_of_item_id) REFERENCES articles_of_item(id)
 | user_id              | BIGINT       | FK   | false    |              |                      |
 | number_of_likes      | INTEGER      |      | true     |              |                      |
 | text                 | VARCHAR(255) |      |          |              |                      |
-| created_at           | DATE(100)    |      | true     |              |                      |
-| updated_at           | DATE(100)    |      | true     |              |                      |
+| created_at           | TIMESTAMP    |      | true     |              |                      |
+| updated_at           | TIMESTAMP    |      | true     |              |                      |
 
 FOREIGN KEY (article_of_recipe_id) REFERENCES article_of_recipe(id)
 
@@ -186,8 +202,8 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 | user_id            | BIGINT       | FK   | false    |              |                      |
 | number_of_likes    | INTEGER      |      | true     |              |                      |
 | text               | VARCHAR(255) |      | true     |              |                      |
-| created_at         | DATE(100)    |      | true     |              |                      |
-| updated_at         | DATE(100)    |      | true     |              |                      |
+| created_at         | TIMESTAMP    |      | true     |              |                      |
+| updated_at         | TIMESTAMP    |      | true     |              |                      |
 
 FOREIGN KEY (articles_of_item_id) REFERENCES articles_of_item(id)
 
@@ -199,8 +215,8 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 | ---------- | ----------- | ---- | -------- | ------------ | -------------------- |
 | id         | BIGINT      | PK   | true     |              | true                 |
 | name       | VARCHAR(20) |      | true     |              |                      |
-| created_at | DATE(100)   |      | true     |              |                      |
-| updated_at | DATE(100)   |      | true     |              |                      |
+| created_at | TIMESTAMP   |      | true     |              |                      |
+| updated_at | TIMESTAMP   |      | true     |              |                      |
 
 ### article_of_recipe_tag テーブル
 
@@ -209,8 +225,8 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 | id                   | BIGINT    | PK   | true     |              | true                 |
 | article_of_recipe_id | BIGINT    | FK   | true     |              |                      |
 | tag_id               | BIGINT    | FK   | true     |              |                      |
-| created_at           | DATE(100) |      | true     |              |                      |
-| updated_at           | DATE(100) |      | true     |              |                      |
+| created_at           | TIMESTAMP |      | true     |              |                      |
+| updated_at           | TIMESTAMP |      | true     |              |                      |
 
 PRIMARY KEY (articles_of_recipe_id, tag_id),
 
@@ -225,8 +241,8 @@ FOREIGN KEY (tag_id) REFERENCES tags(id)
 | id                 | BIGINT    | PK   | true     |              | true                 |
 | article_of_item_id | BIGINT    | FK   | true     |              |                      |
 | tag_id             | BIGINT    | FK   | true     |              |                      |
-| created_at         | DATE(100) |      | true     |              |                      |
-| updated_at         | DATE(100) |      | true     |              |                      |
+| created_at         | TIMESTAMP |      | true     |              |                      |
+| updated_at         | TIMESTAMP |      | true     |              |                      |
 
 PRIMARY KEY (article_of_item_id, tag_id),
 
@@ -252,8 +268,8 @@ FOREIGN KEY (tag_id) REFERENCES tags(id)
 | pollo_vegetarian    | BOOLEAN      |      | true     | false        |                      |
 | fruitarian          | BOOLEAN      |      | true     | false        |                      |
 | other_vegetarian    | BOOLEAN      |      | true     | false        |                      |
-| created_at          | DATE(100)    |      | true     |              |                      |
-| updated_at          | DATE(100)    |      | true     |              |                      |
+| created_at          | TIMESTAMP    |      | true     |              |                      |
+| updated_at          | TIMESTAMP    |      | true     |              |                      |
 
 ### reviews テーブル
 
@@ -267,8 +283,8 @@ FOREIGN KEY (tag_id) REFERENCES tags(id)
 | star            | INTEGER         |      | true     |              |                      |
 | text            | VARCHAR(255)    |      | true     |              |                      |
 | number_of_likes | INTEGER         |      | true     | 0            |                      |
-| created_at      | DATE(100)       |      | true     |              |                      |
-| updated_at      | DATE(100)       |      | true     |              |                      |
+| created_at      | TIMESTAMP       |      | true     |              |                      |
+| updated_at      | TIMESTAMP       |      | true     |              |                      |
 
 FOREIGN KEY (user_id) REFERENCES users(id)
 FOREIGN KEY (restaurant_id) REFERENCES restaurants(id)
@@ -289,8 +305,8 @@ FOREIGN KEY (restaurant_id) REFERENCES restaurants(id)
 | pollo_vegetarian    | BOOLEAN      |      | true     | false        |                      |
 | fruitarian          | BOOLEAN      |      | true     | false        |                      |
 | other_vegetarian    | BOOLEAN      |      | true     | false        |                      |
-| created_at          | DATE(100)    |      | true     |              |                      |
-| updated_at          | DATE(100)    |      | true     |              |                      |
+| created_at          | TIMESTAMP    |      | true     |              |                      |
+| updated_at          | TIMESTAMP    |      | true     |              |                      |
 
 FOREIGN KEY (review_id) REFERENCES reviews(id)
 
@@ -301,8 +317,8 @@ FOREIGN KEY (review_id) REFERENCES reviews(id)
 | id         | BIGINT      | PK   | true     |              | true                 |
 | user_id    | BIGINT      | FK   | true     |              |                      |
 | name       | VARCHAR(50) |      | true     |              |                      |
-| created_at | DATE(100)   |      | true     |              |                      |
-| updated_at | DATE(100)   |      | true     |              |                      |
+| created_at | TIMESTAMP   |      | true     |              |                      |
+| updated_at | TIMESTAMP   |      | true     |              |                      |
 
 FOREIGN KEY (user_id) REFERENCES users(id)
 
@@ -312,8 +328,8 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 | -------------------- | --------- | ---- | -------- | ------------ | -------------------- |
 | bookshelf_id         | BIGINT    | FK   | true     |              |                      |
 | article_of_recipe_id | BIGINT    | FK   | true     |              |                      |
-| created_at           | DATE(100) |      | true     |              |                      |
-| updated_at           | DATE(100) |      | true     |              |                      |
+| created_at           | TIMESTAMP |      | true     |              |                      |
+| updated_at           | TIMESTAMP |      | true     |              |                      |
 
 FOREIGN KEY (bookshelf_id) REFERENCES bookshelves(id)
 FOREIGN KEY (article_of_recipe_id) REFERENCES articles_of_recipe(id)
@@ -324,8 +340,8 @@ FOREIGN KEY (article_of_recipe_id) REFERENCES articles_of_recipe(id)
 | ------------------ | --------- | ---- | -------- | ------------ | -------------------- |
 | bookshelf_id       | BIGINT    | FK   | true     |              |                      |
 | article_of_item_id | BIGINT    | FK   | true     |              |                      |
-| created_at         | DATE(100) |      | true     |              |                      |
-| updated_at         | DATE(100) |      | true     |              |                      |
+| created_at         | TIMESTAMP |      | true     |              |                      |
+| updated_at         | TIMESTAMP |      | true     |              |                      |
 
 FOREIGN KEY (bookshelf_id) REFERENCES bookshelves(id)
 FOREIGN KEY (article_of_item_id) REFERENCES articles_of_item(id)
