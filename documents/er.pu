@@ -268,16 +268,6 @@ entity "likes" as likes {
   updated_at
 }
 
-entity "images_in_storage" as images_in_storage {
-  *id
-  --
-  path
-  fullpath
-  url
-  created_at
-  updated_at
-}
-
 users ||--o{ personal_access_tokens
 users ||--o{ social_accounts
 users ||-r-o{ articles_of_recipe
@@ -301,13 +291,9 @@ bookshelves ||--|{bookshelf_article_of_item
 articles_of_item ||--o{bookshelf_article_of_item
 users ||-u-o{reviews
 menus }o--|| reviews
-restaurants ||-l-|{ reviews
-users |o-l-|{ likes
+restaurants ||--|{ reviews
+users |o-u-|{ likes
 likes |o-r-|{ articles_of_recipe
 likes |o-r-|{ articles_of_item
-images_in_storage ||--|| articles_of_recipe
-images_in_storage||--|| articles_of_item
-images_in_storage |o-r-|| recepi_steps
-images_in_storage|o--|| reports
 
 @enduml
