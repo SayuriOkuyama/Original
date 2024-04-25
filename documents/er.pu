@@ -278,6 +278,7 @@ entity "images_in_storage" as images_in_storage {
   updated_at
 }
 
+users ||--o{ personal_access_tokens
 users ||--o{ social_accounts
 users ||-r-o{ articles_of_recipe
 articles_of_recipe ||-r-|{ recepi_steps
@@ -304,9 +305,6 @@ restaurants ||-l-|{ reviews
 users |o-l-|{ likes
 likes |o-r-|{ articles_of_recipe
 likes |o-r-|{ articles_of_item
-likes |o-r-|{ comments_to_recipe
-likes |o-r-|{ comments_to_item
-likes |o-r-|{ reviews
 images_in_storage ||--|| articles_of_recipe
 images_in_storage||--|| articles_of_item
 images_in_storage |o-r-|| recepi_steps
