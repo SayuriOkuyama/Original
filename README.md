@@ -3,6 +3,9 @@
 
 [ベジタリアンの"食"情報サイト 『VegEvery』](https://vegevery.my-raga-bhakti.com/) 
 
+![バナー](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/20983cc1-fd9f-4a3b-9154-dbc7c9226ae5)
+
+
 ## 1.概要
 
 自身のベジタリアンの種類に対応したレシピやレストランを見つけたいあらゆる種類のベジタリアン向けの**VegEvery** (べジェヴリー)という"**食**"の情報サイトです。
