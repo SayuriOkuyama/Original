@@ -127,3 +127,6 @@ AWS (バックエンド)
 - ユーザーの投稿一覧表示
 - レシピ・フードアイテム記事のお気に入り保存
 - お気に入り記事を整理する本棚機能
+
+![ページイメージ](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/b4dadfe8-0455-44d5-9bf8-c397626aa1ea)
+
