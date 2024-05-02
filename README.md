@@ -1,5 +1,7 @@
 # VegEvery
-[ベジタリアン"食"情報サイト VegEvery](https://vegevery.my-raga-bhakti.com/)
+内定直結型エンジニア実習「アプレンティス」の課題として制作したオリジナルプロダクトです。
+
+[ベジタリアンの"食"情報サイト 『VegEvery』](https://vegevery.my-raga-bhakti.com/) 
 
 ## 1.概要
 
@@ -9,19 +11,17 @@
 
 ヴィーガンレシピサイト V-cook とは異なり、ヴィーガン以外のベジタリアンの方も**自分に合った**食の情報を得ることができます。
 
-★キャプチャ
+![site_views](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/ef03fd29-e439-4b85-b446-bb4e6ebba66d)
+
 
 ## 2.使用技術
-### 言語
+### フロントエンド
+- React 18.2.0
+- Next.js 14.1.4
 
+### バックエンド
 - PHP 8.3.4
-- JavaScript
-- SQL
-
-### フレームワーク
-
-- Laravel Framework 10.46.0 (PHP)
-- Next.js 14.1.4 (React 18.2.0)
+- Laravel Framework 10.46.0
 
 ### ライブラリ
 
@@ -69,6 +69,7 @@ AWS (バックエンド)
 - Route 53
 - S3 (Simple Storage Service)
 - CloudFront
+他..
 
 ### バージョン管理
 
@@ -93,8 +94,10 @@ AWS (バックエンド)
 他..
 
 ## 3.ER 図
+![image](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/ef2461d9-aaff-4a47-8637-fa510c0d1645)
 
 ## 4.インフラ構成図
+![VegEvery](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/7d0cc31b-a9ef-4ee8-906d-effe084c095e)
 
 ## 5.機能一覧
 ### レシピ・市販フードアイテム情報共通機能
