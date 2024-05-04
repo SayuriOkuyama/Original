@@ -17,7 +17,9 @@
 ![site_views](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/ef03fd29-e439-4b85-b446-bb4e6ebba66d)
 
 本プロダクトの開発について、ブログにまとめました。
+
 [初めての個人開発 ①要件定義・設計編](https://qiita.com/mosyaneko/items/8a084443ea60d8da9d53)
+
 [初めての個人開発 ②実装編](https://qiita.com/mosyaneko/items/f87fa7f27467ef3e4cf3)
 
 ## 2.使用技術
