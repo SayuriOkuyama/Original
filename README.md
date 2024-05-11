@@ -1,6 +1,4 @@
 # VegEvery
-内定直結型エンジニア実習「アプレンティス」の課題として制作したオリジナルプロダクトです。
-
 [ベジタリアンの"食"情報サイト 『VegEvery』](https://vegevery.my-raga-bhakti.com/) 
 
 ![バナー](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/20983cc1-fd9f-4a3b-9154-dbc7c9226ae5)
