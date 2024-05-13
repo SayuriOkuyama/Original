@@ -90,10 +90,6 @@ AWS (バックエンド)
 - Prettier ^3.2.5
 - GitHub Actions
 
-### 監視ツール
-
-- Sentry
-
 ### その他
 - Google Map API
 - vis.gl/react-google-maps 0.8
