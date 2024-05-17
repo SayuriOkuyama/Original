@@ -103,7 +103,7 @@ AWS (バックエンド)
 ![image](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/ef2461d9-aaff-4a47-8637-fa510c0d1645)
 
 ## 4.インフラ構成図
-![VegEvery](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/7d0cc31b-a9ef-4ee8-906d-effe084c095e)
+![VegEvery](https://github.com/SayuriOkuyama/VegEvery/assets/134520812/47780094-b625-4118-9a60-44209875c8b6)
 
 ## 5. 画面遷移図
 
